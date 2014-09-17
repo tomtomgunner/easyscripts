@@ -1,0 +1,94 @@
+#!/bin/sh
+clear
+echo ----------------------------------------------------------------------------
+echo Updater V0.2
+uid=`id -u $USERNAME`
+if [ "$uid" != "0" ]
+then
+echo ----------------------------------------------------------------------------
+echo This Program Must Be Run As ROOT!
+echo ----------------------------------------------------------------------------
+else
+clear
+echo ----------------------------------------------------------------------------
+echo Updater V0.2
+echo ----------------------------------------------------------------------------
+echo [-] Update Running... 
+echo [-] Upgrade Waiting
+echo [-] Dependancy installation Waiting
+echo [-] Autoremove Waiting
+echo [-] Autoclean Waiting
+echo ----------------------------------------------------------------------------
+echo RUNNING... apt-get update --This may take some time--
+echo ----------------------------------------------------------------------------
+apt-get update > /dev/nul
+clear
+echo ----------------------------------------------------------------------------
+echo Updater V0.2
+echo ----------------------------------------------------------------------------
+echo [+] Update Complete
+echo [-] Upgrade Running...
+echo [-] Dependancy installation Waiting
+echo [-] Autoremove Waiting
+echo [-] Autoclean Waiting
+echo ----------------------------------------------------------------------------
+echo RUNNING... apt-get upgrade
+echo ----------------------------------------------------------------------------
+apt-get upgrade
+clear
+echo ----------------------------------------------------------------------------
+echo Updater V0.2
+echo ----------------------------------------------------------------------------
+echo [+] Update Complete
+echo [+] Upgrade Complete
+echo [-] Dependancy installation Running...
+echo [-] Autoremove Waiting
+echo [-] Autoclean Waiting
+echo ----------------------------------------------------------------------------
+echo RUNNING... apt-get -f install
+echo ----------------------------------------------------------------------------
+apt-get -f install
+clear
+echo ----------------------------------------------------------------------------
+echo Updater V0.2
+echo ----------------------------------------------------------------------------
+echo [+] Update Complete
+echo [+] Upgrade Complete
+echo [+] Dependancy installation Complete
+echo [-] Autoremove Running...
+echo [-] Autoclean Waiting
+echo ----------------------------------------------------------------------------
+echo RUNNING... apt-get autoremove
+echo ----------------------------------------------------------------------------
+apt-get autoremove
+clear
+echo ----------------------------------------------------------------------------
+echo Updater V0.2
+echo ----------------------------------------------------------------------------
+echo [+] Update Complete                              
+echo [+] Upgrade Complete                             
+echo [+] Dependancy installation Complete             
+echo [+] Autoremove Complete                          
+echo [-] Autoclean Running...
+echo ----------------------------------------------------------------------------
+echo RUNNING... apt-get autoclean
+echo ----------------------------------------------------------------------------
+apt-get autoclean 
+clear
+echo ----------------------------------------------------------------------------
+echo Updater V0.2
+echo ----------------------------------------------------------------------------
+echo [+] Update Complete
+echo [+] Upgrade Complete
+echo [+] Dependancy installation Complete
+echo [+] Autoremove Complete
+echo [+] Autoclean Complete
+echo ----------------------------------------------------------------------------
+echo FINISHED...
+echo ----------------------------------------------------------------------------
+echo Unless you want to Dist-upgrade?
+echo PAHAHAHAHAHAHAHAHAHAHAHHAHAHAHA.
+echo ============================================================================
+echo RGV2ZWxvcGVkIGJ5IFRob21hcyBCYWxsaW4gLS0gdGhvbWFzQGVuY3JpcHRpb24uY28udWsK | base64 -d
+echo ============================================================================
+fi
