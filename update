@@ -1,94 +1,127 @@
-#!/bin/sh
+#!/bin/bash
+#################################################################
+#								#
+#			Setup Instructions			#
+#			------------------			#
+#	1 - chmod +x update					#
+#	2 - echo alias update='~/./update' >> .bashrc		#
+#	3 - echo alias sudo='sudo ' >> .bashrc			#
+#	4 - sudo update						#
+#								#
+#	-------------------------------------------		#
+#	-------------------------------------------		#
+#	-- Alternatively make the original alias --		#
+#	--		   execute:				#
+#	--             'sudo ~/./update'	 --		#
+#	-------------------------------------------		#
+#	-------------------------------------------		#
+#								#
+#################################################################
+version=V1.9.3
+linebreak=------------------------------------------------------------
+R=Running...
+W=Waiting
+C=Complete
+UD=Update
+UG=Upgrade
+DI=Dependancies
+AR=Autoremove
+AC=Autoclean
+banner="Updater $version"
+u=[-]
+r=[\>]
+c=[+]
+out=/dev/nul
 clear
-echo ----------------------------------------------------------------------------
-echo Updater V0.2
+echo $linebreak
+echo $banner
 uid=`id -u $USERNAME`
 if [ "$uid" != "0" ]
 then
-echo ----------------------------------------------------------------------------
-echo This Program Must Be Run As ROOT!
-echo ----------------------------------------------------------------------------
+echo $linebreak									#Stage 1:
+echo This Program Must Be Run As ROOT!						#This stage simply checks that the program is run as root
+echo $linebreak									#Use the command : sudo ./update
 else
 clear
-echo ----------------------------------------------------------------------------
-echo Updater V0.2
-echo ----------------------------------------------------------------------------
-echo [-] Update Running... 
-echo [-] Upgrade Waiting
-echo [-] Dependancy installation Waiting
-echo [-] Autoremove Waiting
-echo [-] Autoclean Waiting
-echo ----------------------------------------------------------------------------
-echo RUNNING... apt-get update --This may take some time--
-echo ----------------------------------------------------------------------------
-apt-get update > /dev/nul
+echo $linebreak
+echo $banner
+echo $linebreak
+echo $r $UD $R
+echo $u $UG $W
+echo $u $DI $W
+echo $u $AR $W
+echo $u $AC $W
+echo $linebreak									#Stage 2:
+echo $R apt-get update --This may take some time--				#This stage pulls the most recent package data from the repositories
+echo $linebreak									#The output goes to /dev/nul so the screen stays relatively clear
+apt-get update -y > $out
 clear
-echo ----------------------------------------------------------------------------
-echo Updater V0.2
-echo ----------------------------------------------------------------------------
-echo [+] Update Complete
-echo [-] Upgrade Running...
-echo [-] Dependancy installation Waiting
-echo [-] Autoremove Waiting
-echo [-] Autoclean Waiting
-echo ----------------------------------------------------------------------------
-echo RUNNING... apt-get upgrade
-echo ----------------------------------------------------------------------------
-apt-get upgrade
+echo $linebreak
+echo $banner
+echo $linebreak
+echo $c $UD $C
+echo $r $UG $R
+echo $u $DI $W
+echo $u $AR $W
+echo $u $AC $W
+echo $linebreak									#Stage 3:
+echo $R apt-get upgrade								#This stage simply upgrades any programs from the repositories
+echo $linebreak									#This is the key stage that the program is based around
+apt-get upgrade -y > $out
 clear
-echo ----------------------------------------------------------------------------
-echo Updater V0.2
-echo ----------------------------------------------------------------------------
-echo [+] Update Complete
-echo [+] Upgrade Complete
-echo [-] Dependancy installation Running...
-echo [-] Autoremove Waiting
-echo [-] Autoclean Waiting
-echo ----------------------------------------------------------------------------
-echo RUNNING... apt-get -f install
-echo ----------------------------------------------------------------------------
-apt-get -f install
+echo $linebreak
+echo $banner
+echo $linebreak
+echo $c $UD $C
+echo $c $UG $C
+echo $r $DI $R
+echo $u $AR $W
+echo $u $AC $W
+echo $linebreak									#Stage 4:
+echo $R apt-get -f install							#This stage installs any dependancies required for the packages
+echo $linebreak									#This stage is the last of the install stages as it is required to run after packages are all installed
+apt-get -f -y install > $out
 clear
-echo ----------------------------------------------------------------------------
-echo Updater V0.2
-echo ----------------------------------------------------------------------------
-echo [+] Update Complete
-echo [+] Upgrade Complete
-echo [+] Dependancy installation Complete
-echo [-] Autoremove Running...
-echo [-] Autoclean Waiting
-echo ----------------------------------------------------------------------------
-echo RUNNING... apt-get autoremove
-echo ----------------------------------------------------------------------------
-apt-get autoremove
+echo $linebreak
+echo $banner
+echo $linebreak
+echo $c $UD $C
+echo $c $UG $C
+echo $c $DI $C
+echo $r $AR $R
+echo $u $AC $W
+echo $linebreak									#Stage 5:
+echo $R apt-get autoremove							#This stage removes any unessential components
+echo $linebreak									#This is useful to free-up disk space
+apt-get autoremove -y > $out
 clear
-echo ----------------------------------------------------------------------------
-echo Updater V0.2
-echo ----------------------------------------------------------------------------
-echo [+] Update Complete                              
-echo [+] Upgrade Complete                             
-echo [+] Dependancy installation Complete             
-echo [+] Autoremove Complete                          
-echo [-] Autoclean Running...
-echo ----------------------------------------------------------------------------
-echo RUNNING... apt-get autoclean
-echo ----------------------------------------------------------------------------
-apt-get autoclean 
+echo $linebreak
+echo $banner
+echo $linebreak
+echo $c $UD $C
+echo $c $UG $C
+echo $c $DI $C
+echo $c $AR $C
+echo $r $AC $R
+echo $linebreak									#Stage 6:
+echo $R apt-get autoclean							#This stage cleans up the repository cache
+echo $linebreak									#This speeds up the process of running an update in future
+apt-get autoclean -y > $out
 clear
-echo ----------------------------------------------------------------------------
-echo Updater V0.2
-echo ----------------------------------------------------------------------------
-echo [+] Update Complete
-echo [+] Upgrade Complete
-echo [+] Dependancy installation Complete
-echo [+] Autoremove Complete
-echo [+] Autoclean Complete
-echo ----------------------------------------------------------------------------
+echo $linebreak
+echo $banner
+echo $linebreak
+echo $c $UD $C
+echo $c $UG $C
+echo $c $DI $C
+echo $c $AR $C
+echo $c $AC $C
+echo $linebreak
 echo FINISHED...
-echo ----------------------------------------------------------------------------
-echo Unless you want to Dist-upgrade?
-echo PAHAHAHAHAHAHAHAHAHAHAHHAHAHAHA.
-echo ============================================================================
-echo RGV2ZWxvcGVkIGJ5IFRob21hcyBCYWxsaW4gLS0gdGhvbWFzQGVuY3JpcHRpb24uY28udWsK | base64 -d
-echo ============================================================================
+echo $linebreak
+echo Unless you want to Dist-upgrade?						#This stage is never run as part of this program
+echo PAHAHAHAHAHAHAHAHAHAHAHHAHAHAHA.						#Anyone who has used this command a few times will likely be able to get the joke
+######################################
+echo PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiAgICAgICAgICAgICAgICAgRGV2ZWxvcGVkIGJ5IFRob21hcyBCYWxsaW4gICAgICAgICAgICAgICAKPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09Cgo= | base64 -d
+######################################
 fi
