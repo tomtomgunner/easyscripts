@@ -17,7 +17,7 @@
 #	-------------------------------------------		#
 #								#
 #################################################################
-version=V1.9.3
+version=V1.9.4
 linebreak=------------------------------------------------------------
 R=Running...
 W=Waiting
@@ -31,7 +31,7 @@ banner="Updater $version"
 u=[-]
 r=[\>]
 c=[+]
-out=/dev/nul
+out=/dev/null
 clear
 echo $linebreak
 echo $banner
@@ -53,7 +53,7 @@ echo $u $AR $W
 echo $u $AC $W
 echo $linebreak									#Stage 2:
 echo $R apt-get update --This may take some time--				#This stage pulls the most recent package data from the repositories
-echo $linebreak									#The output goes to /dev/nul so the screen stays relatively clear
+echo $linebreak									#The output goes to /dev/null so the screen stays relatively clear
 apt-get update -y > $out
 clear
 echo $linebreak
