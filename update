@@ -35,7 +35,7 @@ out=/dev/null
 clear
 echo $linebreak
 echo $banner
-uid=$(id -u)
+uid="$(id -u)"
 if [ "$uid" != "0" ]
 then
 echo $linebreak									#Stage 1:
