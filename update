@@ -17,7 +17,7 @@
 #	-------------------------------------------		#
 #								#
 #################################################################
-version=V1.9.4
+version=V1.9.5
 linebreak=------------------------------------------------------------
 R=Running...
 W=Waiting
@@ -35,7 +35,7 @@ out=/dev/null
 clear
 echo $linebreak
 echo $banner
-uid=`id -u $USERNAME`
+uid=`id -u`
 if [ "$uid" != "0" ]
 then
 echo $linebreak									#Stage 1:
