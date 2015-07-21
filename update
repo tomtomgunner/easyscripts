@@ -28,15 +28,15 @@ DI=Dependancies
 AR=Autoremove
 AC=Autoclean
 banner="Updater $version"
-u="[-]"
-r="[\>]""
-c="[+]"
+u='[-]'
+r='[>]'
+c='[+]'
 out=/dev/null
 clear
 echo $linebreak
 echo $banner
-uid="$(id -u)"
-if [ "$uid" != "0" ]
+uid=$(id -u)
+if [ $uid != 0 ]
 then
 echo $linebreak									#Stage 1:
 echo This Program Must Be Run As ROOT!						#This stage simply checks that the program is run as root
