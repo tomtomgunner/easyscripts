@@ -6,15 +6,6 @@
 #	1 - chmod +x update					#
 #	2 - echo alias update='~/./update' >> .bashrc		#
 #	3 - echo alias sudo='sudo ' >> .bashrc			#
-root@kali:~/easyscripts# cat update     			#
-#!/bin/bash
-#################################################################
-#								#
-#			Setup Instructions			#
-#			------------------			#
-#	1 - chmod +x update					#
-#	2 - echo alias update='~/./update' >> .bashrc		#
-#	3 - echo alias sudo='sudo ' >> .bashrc			#
 #	4 - sudo update						#
 #								#
 #	-------------------------------------------		#
