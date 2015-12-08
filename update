@@ -6,6 +6,15 @@
 #	1 - chmod +x update					#
 #	2 - echo alias update='~/./update' >> .bashrc		#
 #	3 - echo alias sudo='sudo ' >> .bashrc			#
+root@kali:~/easyscripts# cat update     			#
+#!/bin/bash
+#################################################################
+#								#
+#			Setup Instructions			#
+#			------------------			#
+#	1 - chmod +x update					#
+#	2 - echo alias update='~/./update' >> .bashrc		#
+#	3 - echo alias sudo='sudo ' >> .bashrc			#
 #	4 - sudo update						#
 #								#
 #	-------------------------------------------		#
@@ -17,7 +26,7 @@
 #	-------------------------------------------		#
 #								#
 #################################################################
-version=V1.9.6
+version=V1.9.8
 linebreak=------------------------------------------------------------
 R=Running...
 W=Waiting
@@ -27,101 +36,104 @@ UG=Upgrade
 DI=Dependancies
 AR=Autoremove
 AC=Autoclean
+e=echo
+cl=clear
+ag=apt-get
 banner="Updater $version"
 u='[-]'
 r='[>]'
 c='[+]'
 out=/dev/null
-clear
-echo $linebreak
-echo $banner
+$cl
+$e $linebreak
+$e $banner
 uid=$(id -u)
 if [ $uid != 0 ]
 then
-echo $linebreak									#Stage 1:
-echo This Program Must Be Run As ROOT!						#This stage simply checks that the program is run as root
-echo $linebreak									#Use the command : sudo ./update
+$e $linebreak									#Stage 1:
+$e This Program Must Be Run As ROOT!						#This stage simply checks that the program is run as root
+$e $linebreak									#Use the command : sudo ./update
 else
-clear
-echo $linebreak
-echo $banner
-echo $linebreak
-echo $r $UD $R
-echo $u $UG $W
-echo $u $DI $W
-echo $u $AR $W
-echo $u $AC $W
-echo $linebreak									#Stage 2:
-echo $R apt-get update --This may take some time--				#This stage pulls the most recent package data from the repositories
-echo $linebreak									#The output goes to /dev/null so the screen stays relatively clear
-apt-get update -y > $out
-clear
-echo $linebreak
-echo $banner
-echo $linebreak
-echo $c $UD $C
-echo $r $UG $R
-echo $u $DI $W
-echo $u $AR $W
-echo $u $AC $W
-echo $linebreak									#Stage 3:
-echo $R apt-get upgrade								#This stage simply upgrades any programs from the repositories
-echo $linebreak									#This is the key stage that the program is based around
-apt-get upgrade -y > $out
-clear
-echo $linebreak
-echo $banner
-echo $linebreak
-echo $c $UD $C
-echo $c $UG $C
-echo $r $DI $R
-echo $u $AR $W
-echo $u $AC $W
-echo $linebreak									#Stage 4:
-echo $R apt-get -f install							#This stage installs any dependancies required for the packages
-echo $linebreak									#This stage is the last of the install stages as it is required to run after packages are all installed
-apt-get -f -y install > $out
-clear
-echo $linebreak
-echo $banner
-echo $linebreak
-echo $c $UD $C
-echo $c $UG $C
-echo $c $DI $C
-echo $r $AR $R
-echo $u $AC $W
-echo $linebreak									#Stage 5:
-echo $R apt-get autoremove							#This stage removes any unessential components
-echo $linebreak									#This is useful to free-up disk space
-apt-get autoremove -y > $out
-clear
-echo $linebreak
-echo $banner
-echo $linebreak
-echo $c $UD $C
-echo $c $UG $C
-echo $c $DI $C
-echo $c $AR $C
-echo $r $AC $R
-echo $linebreak									#Stage 6:
-echo $R apt-get autoclean							#This stage cleans up the repository cache
-echo $linebreak									#This speeds up the process of running an update in future
-apt-get autoclean -y > $out
-clear
-echo $linebreak
-echo $banner
-echo $linebreak
-echo $c $UD $C
-echo $c $UG $C
-echo $c $DI $C
-echo $c $AR $C
-echo $c $AC $C
-echo $linebreak
-echo FINISHED...
-echo $linebreak
-echo Unless you want to Dist-upgrade?						#This stage is never run as part of this program
-echo PAHAHAHAHAHAHAHAHAHAHAHHAHAHAHA.						#Anyone who has used this command a few times will likely be able to get the joke
+$cl
+$e $linebreak
+$e $banner
+$e $linebreak
+$e $r $UD $R
+$e $u $UG $W
+$e $u $DI $W
+$e $u $AR $W
+$e $u $AC $W
+$e $linebreak									#Stage 2:
+$e $R $ag update --This may take some time--					#This stage pulls the most recent package data from the repositories
+$e $linebreak									#The output goes to /dev/null so the screen stays relatively clear
+$ag update -y > $out
+$cl
+$e $linebreak
+$e $banner
+$e $linebreak
+$e $c $UD $C
+$e $r $UG $R
+$e $u $DI $W
+$e $u $AR $W
+$e $u $AC $W
+$e $linebreak									#Stage 3:
+$e $R $ag upgrade								#This stage simply upgrades any programs from the repositories
+$e $linebreak									#This is the key stage that the program is based around
+$ag upgrade -y > $out
+$cl
+$e $linebreak
+$e $banner
+$e $linebreak
+$e $c $UD $C
+$e $c $UG $C
+$e $r $DI $R
+$e $u $AR $W
+$e $u $AC $W
+$e $linebreak									#Stage 4:
+$e $R $ag -f install								#This stage installs any dependancies required for the packages
+$e $linebreak									#This stage is the last of the install stages as it is required to run after packages are all installed
+$ag -f -y install > $out
+$cl
+$e $linebreak
+$e $banner
+$e $linebreak
+$e $c $UD $C
+$e $c $UG $C
+$e $c $DI $C
+$e $r $AR $R
+$e $u $AC $W
+$e $linebreak									#Stage 5:
+$e $R $ag autoremove								#This stage removes any unessential components
+$e $linebreak									#This is useful to free-up disk space
+$ag autoremove -y > $out
+$cl
+$e $linebreak
+$e $banner
+$e $linebreak
+$e $c $UD $C
+$e $c $UG $C
+$e $c $DI $C
+$e $c $AR $C
+$e $r $AC $R
+$e $linebreak									#Stage 6:
+$e $R $ag autoclean								#This stage cleans up the repository cache
+$e $linebreak									#This speeds up the process of running an update in future
+$ag autoclean -y > $out
+$cl
+$e $linebreak
+$e $banner
+$e $linebreak
+$e $c $UD $C
+$e $c $UG $C
+$e $c $DI $C
+$e $c $AR $C
+$e $c $AC $C
+$e $linebreak
+$e FINISHED...
+$e $linebreak
+$e Unless you want to Dist-upgrade?						#This stage is never run as part of this program
+$e PAHAHAHAHAHAHAHAHAHAHAHHAHAHAHA.						#Anyone who has used this command a few times will likely be able to get the joke
 ######################################
-echo PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiAgICAgICAgICAgICAgICAgRGV2ZWxvcGVkIGJ5IFRob21hcyBCYWxsaW4gICAgICAgICAgICAgICAKPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09Cgo= | base64 -d
+$e PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiAgICAgICAgICAgICAgICAgRGV2ZWxvcGVkIGJ5IFRob21hcyBCYWxsaW4gICAgICAgICAgICAgICAKPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09Cgo= | base64 -d
 ######################################
 fi
